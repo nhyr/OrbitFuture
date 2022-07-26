@@ -12,7 +12,7 @@ faceRecognizer.read(latihDir+'/training.xml')
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 id = 0
-names = ['Reyhan1','Reyhan','Reyhan 2']
+names = ['reyhan','nial','Reyhan 2','pak reza']
 
 minWidth = 0.1*cam.get(3)
 minHeight = 0.1*cam.get(4)
@@ -27,11 +27,11 @@ while True:
         id, confidence = faceRecognizer.predict(abuAbu[y:y+h,x:x+w]) #confidence = 0 artinya cocok sempurna
         print("ID : ",id)
         print("len name : ",len(names))
-        if confidence<=40 :
-            nameID = names[id]
-            confidenceTxt = " {0}%".format(round(100-confidence))
-        else:
+        if confidence>=50 :
             nameID = names[0]
+            confidenceTxt = " {0}%".format(round(100- confidence))
+        else:
+            nameID = names[id]
             confidenceTxt = " {0}%".format(round(100 - confidence))
         cv2.putText(frame,str(nameID),(x+5,y-5),font,1,(255, 255, 255),2)
         cv2.putText(frame, str(confidenceTxt), (x + 5, y+h-5), font, 1, (255, 255, 0), 1)
